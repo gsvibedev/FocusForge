@@ -1,0 +1,96 @@
+:root {
+  --primary: #818cf8;
+  --primary-dark: #6366f1;
+  --bg-light: linear-gradient(180deg, #818cf8 0%, #f8fafc 100%);
+  --bg-dark: linear-gradient(180deg, #1e293b 0%, #0f172a 100%);
+  --text-light: #334155;
+  --text-dark: #f1f5f9;
+  --card-bg-light: #ffffff;
+  --card-bg-dark: #1e293b;
+  --shadow-light: 0 10px 30px rgba(0,0,0,0.1);
+  --shadow-dark: 0 10px 30px rgba(0,0,0,0.3);
+  --button-text: #ffffff;
+}
+
+/* Light mode (default) */
+:root {
+  --bg: var(--bg-light);
+  --text: var(--text-light);
+  --card-bg: var(--card-bg-light);
+  --shadow: var(--shadow-light);
+}
+
+/* Dark mode */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: var(--bg-dark);
+    --text: var(--text-dark);
+    --card-bg: var(--card-bg-dark);
+    --shadow: var(--shadow-dark);
+  }
+}
+
+/* Dark mode class override */
+.dark-mode {
+  --bg: var(--bg-dark);
+  --text: var(--text-dark);
+  --card-bg: var(--card-bg-dark);
+  --shadow: var(--shadow-dark);
+}
+
+html, body { height:100%; margin:0; font-family: Inter, Roboto, system-ui, sans-serif; }
+body { background: var(--bg); display:flex; align-items:center; justify-content:center; transition: background 0.3s ease; }
+.wrap { background: var(--card-bg); padding:32px; border-radius:16px; width:min(520px, 90%); box-shadow: var(--shadow); text-align:center; transition: all 0.3s ease; }
+h1 { margin:0 0 8px; font-size:28px; color:var(--primary); }
+p { margin:0 0 16px; color:var(--text); }
+button { background:var(--primary); color:var(--button-text); border:none; padding:10px 16px; border-radius:10px; cursor:pointer; transition: all 0.2s ease; }
+button:hover { background: var(--primary-dark); transform: translateY(-1px); }
+
+/* Brand/Logo */
+.brand { display:flex; justify-content:center; margin-bottom: 12px; }
+.brand img { 
+  width:72px; 
+  height:72px; 
+  object-fit: contain; 
+  border-radius: 12px; 
+  box-shadow: var(--shadow);
+  /* Remove white background completely */
+  background: transparent;
+  /* Advanced white background removal techniques */
+  filter: contrast(1.2) brightness(1.1);
+  /* Use multiply blend mode to remove white backgrounds */
+  mix-blend-mode: multiply;
+  /* Ensure crisp rendering */
+  image-rendering: -webkit-optimize-contrast;
+  image-rendering: crisp-edges;
+}
+
+/* Alternative logo styling for better white background removal */
+.brand img.no-white-bg {
+  /* Use CSS mask to create transparency effect */
+  -webkit-mask: 
+    radial-gradient(circle, transparent 0%, transparent 5%, black 5%, black 95%, transparent 95%);
+  mask: 
+    radial-gradient(circle, transparent 0%, transparent 5%, black 5%, black 95%, transparent 95%);
+  /* Remove white using advanced filtering */
+  filter: 
+    contrast(1.3) 
+    brightness(1.2) 
+    saturate(1.1)
+    drop-shadow(0 2px 4px rgba(0,0,0,0.1));
+}
+
+/* Dark mode specific logo adjustments */
+@media (prefers-color-scheme: dark) {
+  .brand img {
+    filter: contrast(1.1) brightness(1.3) invert(0.05);
+  }
+}
+
+.dark-mode .brand img {
+  filter: contrast(1.1) brightness(1.3) invert(0.05);
+}
+
+
+
+
